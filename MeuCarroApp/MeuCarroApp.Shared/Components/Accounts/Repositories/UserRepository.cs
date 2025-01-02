@@ -2,6 +2,7 @@
 using MeuCarroApp.Shared.Components.Core.Entities;
 using MeuCarroApp.Shared.Components.Accounts.Interfaces;
 using MeuCarroApp.Shared.Components.Accounts.Records;
+using Microsoft.Maui.ApplicationModel.Communication;
 
 
 namespace MeuCarroApp.Shared.Components.Accounts.Repositories
@@ -19,27 +20,70 @@ namespace MeuCarroApp.Shared.Components.Accounts.Repositories
                 CreatedAt = DateTime.UtcNow,
                 KeepConnected = false
             };
+            await Context!.Init();
             int rows = await Context!.Database!.InsertAsync(user);
             if (rows < 1)
             {
                 throw new Exception("Falha na inscriçao do usuário.");
             }
+            // Validar formato do email
+            var userEmail = new UserEmail()
+            {
+                UserId = user!.Id,
+                Email = input.Email,
+                IsMain = true
+            };
+
+            rows = await Context!.Database!.InsertAsync(userEmail);
+            if (rows < 1)
+            {
+                throw new Exception("Falha na inserçao do E-mail do usuário.");
+            }
             return new SignUpOutput()
             {
-                Username = user.Username
+                Username = user.Username,
+                Email = input.Email
             };
         }
 
-        public Task<UserCreateOutput?> Insert(UserCreateInput input)
+        public async Task<UserCreateOutput?> Insert(UserCreateInput input)
         {
-            throw new NotImplementedException();
+            var user = new User()
+            {
+                Username = input.Username,
+                PasswordHash = input.Password,
+                CreatedAt = DateTime.UtcNow,
+                KeepConnected = false
+            };
+            await Context!.Init();
+            int rows = await Context!.Database!.InsertAsync(user);
+
+            if (rows < 1)
+            {
+                throw new Exception("Falha na inscriçao do usuário.");
+            }
+            // Validar formato do email
+            var userEmail = new UserEmail()
+            {
+                UserId = user!.Id,
+                Email = input.Email,
+                IsMain = true
+            };
+
+            rows = await Context!.Database!.InsertAsync(userEmail);
+            if (rows < 1)
+            {
+                throw new Exception("Falha na inserçao do E-mail do usuário.");
+            }
+
+            return new UserCreateOutput() { Username = user.Username};
         }
 
         public async Task<List<UserQuickAccess>> UserQuickAccess()
         {
             await Context!.Init();
             var users = await Context!.Database!.Table<User>()
-                .Where(user => user.KeepConnected == true)
+                //.Where(user => user.KeepConnected == true)
                 .ToListAsync();
             // Data Mapper
             var output = new List<UserQuickAccess>();
@@ -56,9 +100,22 @@ namespace MeuCarroApp.Shared.Components.Accounts.Repositories
             return output;
         }
 
-        public Task<LoginOutput?> Login(LoginInput input)
+        public async Task<LoginOutput?> Login(LoginInput input)
         {
-            throw new NotImplementedException();
+            await Context!.Init();
+            var user = await Context!.Database!.Table<User>()
+                .Where(user => user.Username == input.Username)
+                .FirstAsync();
+            if (user.PasswordHash != input.Password)
+            {
+                throw new Exception("Tentativa de login falha");
+            }
+
+            return new LoginOutput()
+            {
+                Username = user!.Username!,
+                KeepConnected = user!.KeepConnected
+            };
         }
 
     }

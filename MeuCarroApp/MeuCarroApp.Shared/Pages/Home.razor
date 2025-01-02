@@ -64,7 +64,6 @@
         </section>
     </article>
     <article class="col-xs-12 col-md-6">
-
         @if (TotalUsers < 1)
         {
             <h3>Primeira vez aqui?</h3>
@@ -80,6 +79,18 @@
         }
         else
         {
+            <article class="row">
+                @foreach (var user in UsersQuickAccess)
+                {
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@user.Username</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </article>
             <h3>Já tem cadastro?</h3>
             <p>Informe seus dados para entrar.</p>
             <div class="border rounded-3 shadow" style="padding: 20px">
@@ -98,17 +109,17 @@
     /***
         User Story - Como Visitante desejo ver o formulário de Cadastro de usuários para poder acessar o Aplicativo
         Scenario: Primeiro Acesso ao Aplicativo
-        When - Nao existem usuários cadastrados nesse dispositivo
-        And - É a primeira vez que acesso o Aplicativo
-        Than - Eu desejo ver o Formulário de Cadastro de Usuários
+            When - Nao existem usuários cadastrados nesse dispositivo
+            And - É a primeira vez que acesso o Aplicativo
+            Than - Eu desejo ver o Formulário de Cadastro de Usuários
         Scenario: Login rápido nesse dispositivo
-        When - Existe um usuário no banco de dados
-        And - Ele está configurado como acesso rápido
-        Than - O sistema lista esses usuários com link de acesso rápido
+            When - Existe um usuário no banco de dados
+            And - Ele está configurado como acesso rápido
+            Than - O sistema lista esses usuários com link de acesso rápido
         Scenario: Demais usuários cadastrados nesse dispositivo
-        When: Eu abro o Aplicativo
-        And: Não é a primeira vez que acesso o Aplicativo
-        Than: Eu desejo ver o link de acesso a página de Cadastro de Usuários
+            When: Eu abro o Aplicativo
+            And: Não é a primeira vez que acesso o Aplicativo
+            Than: Eu desejo ver o link de acesso a página de Cadastro de Usuários
      ***/
 
     //private string factor => FormFactor.GetFormFactor();
@@ -121,7 +132,7 @@
 
     public List<UserQuickAccess> UsersQuickAccess { get; set; } = null!;
 
-    public int TotalUsers { get; set; }
+    public int TotalUsers { get; set; } = 0;
 
     /***
     Encontrados identificadores de tempo de execução específicos da versão ou da distribuição: alpine-arm, alpine-arm64, alpine-x64. Bibliotecas afetadas: SQLitePCLRaw.lib.e_sqlite3. No .NET 8.0 e superior, ativos para identificadores de tempo de execução específicos da versão e da distribuição não serão encontrados por padrão. Veja https://aka.ms/dotnet/rid-usage para obter detalhes.
@@ -131,8 +142,8 @@
     protected override async Task OnInitializedAsync()
     {
         repository = new UserSQLiteRepository(new SQLiteContexts());
-        TotalUsers = 0;
         UsersQuickAccess = await repository.UserQuickAccess();
+        TotalUsers = UsersQuickAccess.Count();
         await base.OnInitializedAsync();
     }
 

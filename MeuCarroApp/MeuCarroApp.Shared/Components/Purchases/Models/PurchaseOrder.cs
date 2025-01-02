@@ -1,6 +1,5 @@
 ﻿using MeuCarroApp.Shared.Components.Catalog.Moels;
 using MeuCarroApp.Shared.Components.Core.Entities;
-using MeuCarroApp.Shared.Components.Suppliers.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

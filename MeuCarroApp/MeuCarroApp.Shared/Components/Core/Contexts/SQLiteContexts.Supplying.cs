@@ -1,4 +1,4 @@
-﻿using MeuCarroApp.Shared.Components.Suppliers.Models;
+﻿using MeuCarroApp.Shared.Components.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

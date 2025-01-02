@@ -67,7 +67,7 @@
     <Folder Include="Components\Suppliers\Events\" />
     <Folder Include="Components\Suppliers\Forms\" />
     <Folder Include="Components\Suppliers\Lists\" />
-    <Folder Include="Components\Suppliers\Records\" />
+    <Folder Include="Components\Suppliers\Models\" />
     <Folder Include="Components\Suppliers\Services\" />
     <Folder Include="Components\Vehicles\Events\" />
     <Folder Include="Components\Vehicles\Forms\" />

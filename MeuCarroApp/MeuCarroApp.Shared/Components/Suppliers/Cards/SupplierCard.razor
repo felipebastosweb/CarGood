@@ -1,5 +1,5 @@
 ﻿@using MeuCarroApp.Shared.Components.Core.Contexts
-@using MeuCarroApp.Shared.Components.Suppliers.Models
+@using MeuCarroApp.Shared.Components.Suppliers.Records
 
 
 @if(supplier != null)
@@ -38,9 +38,7 @@ else
 
 @code {
     public int SupplierId { get; set; }
-    public Supplier? supplier { get; set; }
-
-    SQLiteContexts _context = new SQLiteContexts();
+    public SupplierOutput? supplier { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

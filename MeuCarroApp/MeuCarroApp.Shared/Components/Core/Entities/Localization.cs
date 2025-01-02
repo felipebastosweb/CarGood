@@ -16,14 +16,16 @@ namespace MeuCarroApp.Shared.Components.Core.Entities
 
     public class Language : BaseAuditableEntity
     {
-        public Country? Country { get; set; }
+        public int CountryId { get; set; }
+        [Ignore] public Country? Country { get; set; }
         public string? Title { get; set; }
         public string? Code { get; set; }
     }
 
     public class Zone : BaseAuditableEntity
     {
-        public Country? Country { get; set; }
+        public int CountryId { get; set; }
+        [Ignore] public Country? Country { get; set; }
         public string? Name { get; set; }
         public string? Code { get; set; }
         [Ignore] public List<ZoneChild>? Children { get; set; }
@@ -31,8 +33,8 @@ namespace MeuCarroApp.Shared.Components.Core.Entities
 
     public class ZoneChild : BaseAuditableEntity
     {
+        public int RootId { get; set; }
         public int ZoneId { get; set; }
-        public Zone? Zone { get; set; }
     }
 
     public class Address : BaseAuditableEntity
@@ -41,7 +43,7 @@ namespace MeuCarroApp.Shared.Components.Core.Entities
         public string? Number { get; set; }
         public string? Address2 { get; set; }
         public int ZoneId { get; set; }
-        public Zone? Zone { get; set; }
+        [Ignore] public Zone? Zone { get; set; }
     }
 
     public class Contact

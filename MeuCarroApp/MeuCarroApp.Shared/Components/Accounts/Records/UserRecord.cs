@@ -18,6 +18,7 @@ namespace MeuCarroApp.Shared.Components.Accounts.Records
     public record SignUpOutput
     {
         public required string Username { get; set; } = string.Empty;
+        public required string Email { get; set; } = string.Empty;
     }
 
     public record LoginInput

@@ -7,17 +7,23 @@ namespace MeuCarroApp.Shared.Components.Core.Entities
         [Unique] public string? Username { get; set; }
         public string? PasswordHash { get; set; }
         public bool KeepConnected { get; set; }
+        [Ignore] public UserEmail? Emails { get; set; }
+        [Ignore] public UserTelephone? Telephones { get; set; }
         [Ignore] public Role? Role { get; set; }
     }
 
     public class UserTelephone : BaseAuditableEntity
     {
+        public int UserId { get; set; }
+        [Ignore] public User? User { get; set; }
         public string? Telephone { get; set; }
         public bool IsMain { get; set; }
     }
 
     public class UserEmail : BaseAuditableEntity
     {
+        public int UserId { get; set; }
+        [Ignore] public User? User { get; set; }
         public string? Email { get; set; }
         public bool IsMain { get; set; }
     }
