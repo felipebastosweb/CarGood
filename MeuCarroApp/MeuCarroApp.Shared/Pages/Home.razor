@@ -64,6 +64,21 @@
         </section>
     </article>
     <article class="col-xs-12 col-md-6">
+        @if (UsersQuickAccess != null && UsersQuickAccess.Count() > 0)
+        {
+            <article class="row">
+                @foreach (var user in UsersQuickAccess)
+                {
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@user.Username</h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </article>
+        }
         @if (TotalUsers < 1)
         {
             <h3>Primeira vez aqui?</h3>
@@ -79,18 +94,6 @@
         }
         else
         {
-            <article class="row">
-                @foreach (var user in UsersQuickAccess)
-                {
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">@user.Username</h5>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </article>
             <h3>Já tem cadastro?</h3>
             <p>Informe seus dados para entrar.</p>
             <div class="border rounded-3 shadow" style="padding: 20px">
