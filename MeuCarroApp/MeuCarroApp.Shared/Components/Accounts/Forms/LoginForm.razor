@@ -37,7 +37,8 @@
 @code
 {
     public IUserRepository repository { get; set; } = null!;
-    private LoginInput? input { get; set; }
+    [Parameter]
+    public LoginInput? input { get; set; }
 
     private LoginOutput? output { get; set; } = null!;
 

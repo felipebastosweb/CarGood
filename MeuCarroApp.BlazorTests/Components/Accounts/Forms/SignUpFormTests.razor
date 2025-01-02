@@ -1,0 +1,18 @@
+﻿@inherits TestContext
+
+@using MeuCarroApp.Shared.Components.Accounts.Forms
+
+@code {
+    [Fact]
+    public void Test_SignUpFormRenderingCorrectly()
+    {
+        var cut = Render(@<SignUpForm />);
+        cut.Find("input[id=Username]");
+        cut.Find("input[id=Password]");
+        cut.Find("input[id=Email]");
+        cut.Find("input[id=Telephone]");
+        cut.Find("input[type=checkbox]");
+        cut.Find("button")
+            .MarkupMatches(@<button type="submit" class="btn btn-primary">Confirm</button>);
+    }
+}

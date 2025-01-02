@@ -14,19 +14,19 @@
         <ValidationSummary />
         <div class="mb-3">
             <label class="form-label">Username</label>
-            <InputText @bind-Value="input!.Username" class="form-control" />
+            <InputText @bind-Value="input!.Username" id="Username" class="form-control" />
         </div>
         <div class="mb-3">
             <label class="form-label">Password</label>
-            <InputText type="password" @bind-Value="input.Password" class="form-control" />
+            <InputText type="password" @bind-Value="input.Password" id="Password" class="form-control" />
         </div>
         <div class="mb-3">
             <label class="form-label">E-mail</label>
-            <InputText @bind-Value="input.Email" class="form-control" />
+            <InputText @bind-Value="input.Email" id="Email" class="form-control" />
         </div>
         <div class="mb-3">
             <label class="form-label">Telephone</label>
-            <InputText @bind-Value="input.Telephone" class="form-control" />
+            <InputText @bind-Value="input.Telephone" id="Telephone" class="form-control" />
         </div>
         <div class="mb-3 form-check">
             <InputCheckbox @bind-Value="input.AcceptTerms" class="form-check-input" id="AcceptTerms" />
@@ -52,7 +52,8 @@
 @code
 {
     public IUserRepository repository { get; set; } = null!;
-    private SignUpInput? input { get; set; }
+    [Parameter]
+    public SignUpInput? input { get; set; }
     private SignUpOutput? output { get; set; } = null!;
 
     protected override void OnInitialized()

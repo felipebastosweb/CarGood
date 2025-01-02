@@ -1,5 +1,6 @@
 ﻿@page "/"
 
+@using System.Globalization
 @using MeuCarroApp.Shared.Components.Core.Contexts
 @using MeuCarroApp.Shared.Components.Accounts.Forms
 @using MeuCarroApp.Shared.Components.Accounts.Records
@@ -109,6 +110,27 @@
 
 @code
 {
+    // Internationalization
+    // https://learn.microsoft.com/pt-br/aspnet/core/blazor/globalization-localization?view=aspnetcore-9.0
+
+
+    /***
+     * UserStory - Como Visitante desejo ver o conteúdo do aplicativo na mesma língua do Dispositivo
+     *
+     ***/
+
+    private List<CultureInfo> supportedCultures { get; set; } = new();
+    private CultureInfo? selectedCulture { get; set; }
+
+    //private string factor => FormFactor.GetFormFactor();
+    //private string platform => FormFactor.GetPlatform();
+
+    //#if ANDROID || IOS || WINDOWS
+    public IUserRepository repository { get; set; } = null!;
+    //#else
+    //#endif
+
+
     /***
         User Story - Como Visitante desejo ver o formulário de Cadastro de usuários para poder acessar o Aplicativo
         Scenario: Primeiro Acesso ao Aplicativo
@@ -125,13 +147,6 @@
             Than: Eu desejo ver o link de acesso a página de Cadastro de Usuários
      ***/
 
-    //private string factor => FormFactor.GetFormFactor();
-    //private string platform => FormFactor.GetPlatform();
-
-    //#if ANDROID || IOS || WINDOWS
-    public IUserRepository repository { get; set; } = null!;
-    //#else
-    //#endif
 
     public List<UserQuickAccess> UsersQuickAccess { get; set; } = null!;
 
@@ -145,6 +160,12 @@
     protected override async Task OnInitializedAsync()
     {
         repository = new UserSQLiteRepository(new SQLiteContexts());
+        
+        supportedCultures.Add(new CultureInfo("pt-BR"));
+        supportedCultures.Add(new CultureInfo("en-US"));
+
+        selectedCulture = CultureInfo.CurrentCulture;
+
         UsersQuickAccess = await repository.UserQuickAccess();
         TotalUsers = UsersQuickAccess.Count();
         await base.OnInitializedAsync();
