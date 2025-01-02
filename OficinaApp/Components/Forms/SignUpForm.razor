@@ -1,0 +1,53 @@
+﻿@using OficinaApp.Data.Models
+
+<div class="border rounded-3 shadow" style="padding: 20px">
+
+    <h3>Sign up</h3>
+
+    <EditForm Model="UserVisitor" onsubmit="OnSignUpSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <InputText @bind-Value="UserVisitor!.Username" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <InputText type="password" @bind-Value="UserVisitor!.Password" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">E-mail</label>
+            <InputText @bind-Value="UserVisitor!.Email" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Telephone</label>
+            <InputText @bind-Value="UserVisitor!.Telephone" class="form-control" />
+        </div>
+        <div class="mb-3 form-check">
+            <input class="form-check-input" type="checkbox" value="" id="AcceptTerms">
+            <label class="form-check-label" for="keepConnected">
+                I accept the Use Terms and Privacy Policy. 
+            </label>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Confirm</button>
+        </div>
+
+    </EditForm>
+
+</div>
+
+
+@code {
+    private User? UserVisitor { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        UserVisitor = new();
+    }
+
+    protected void OnSignUpSubmit()
+    {
+    }
+}

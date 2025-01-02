@@ -1,0 +1,21 @@
+﻿@using OficinaApp.Data.Models
+
+<h3>Add Vehicle</h3>
+
+<EditForm Model="TheVehicle">
+</EditForm>
+
+@code {
+    public record MyVehicle
+    {
+        public Manufacturer? Manufacturer { get; set; }
+        public Brand? Brand { get; set; }
+    }
+
+    private MyVehicle? TheVehicle { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+}

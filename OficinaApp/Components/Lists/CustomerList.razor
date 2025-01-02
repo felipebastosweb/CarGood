@@ -1,0 +1,44 @@
+﻿@using OficinaApp.Data.Models
+
+@using OficinaApp.Components.Cards
+
+
+<section class="row">
+    @foreach(var item in customers)
+    {
+        <article class="col-4">
+            <CustomerCard customer="@item" />
+        </article>
+    }
+</section>
+
+@code {
+    private List<Customer> customers { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        customers!.Add(
+            new Customer() {
+                Person = new PhysicalPerson()
+                {
+                    Name = "Felipe Augusto Bastos Moraes",
+                    Contact = new Contact()
+                    {
+                        Telephone = "",
+                        Email = ""
+                    }
+                },
+                BillingAddress = new Address()
+                {
+                    Address1 = "",
+                    Address2 = "",
+                },
+                CreationDate = DateTime.Now
+            }
+        );
+    }
+
+
+}

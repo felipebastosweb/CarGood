@@ -1,0 +1,57 @@
+﻿
+@inject NavigationManager Navigation
+
+<div class="border rounded-3 shadow" style="padding: 20px">
+
+    <h3>Login</h3>
+
+    <EditForm Model="UserVisitor">
+        <!--DataAnnotationsValidator /-->
+        <!--ValidationSummary /-->
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <!--InputText @bind-Value="UserVisitor!.Username" class="form-control" /-->
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <!--InputText @bind-Value="UserVisitor!.Password" class="form-control" /-->
+        </div>
+        <div class="mb-3 form-check">
+            <input @bind="UserVisitor!.KeepConnected" class="form-check-input" type="checkbox" id="keepConnected">
+            <label class="form-check-label" for="keepConnected">
+                Keep Connected
+            </label>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        <div class="mb-3">
+            <p>or <a href="subscribe">LogIn</a></p>
+        </div>
+    </EditForm>
+
+</div>
+
+@code {
+
+    private record UserLoginInput
+    {
+        public string? Username { get; set; }
+        public string? Password { get; set; }
+        public bool KeepContected { get; set; }
+    }
+
+    private UserLoginInput? UserVisitor { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        UserVisitor = new();
+    }
+
+    private void EntrarOnClick()
+    {
+        Navigation.NavigateTo("dash");
+    }
+
+}

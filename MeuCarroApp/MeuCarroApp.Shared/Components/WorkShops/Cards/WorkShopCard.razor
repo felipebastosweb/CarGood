@@ -1,0 +1,23 @@
+﻿@using MeuCarroApp.Shared.Components.Core.Entities
+@using MeuCarroApp.Shared.Components.WorkShops.Models
+
+<div class="card">
+    <header class="card-header">
+        @workShop!.LegalPerson!.TradeName
+    </header>
+    <article class="card-body">
+        <h5 class="card-title">@workShop!.Name</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">@workShop!.LegalPerson!.FederalInscriptionNumber</h6>
+        <p class="card-text">Content</p>
+        <a href="#" class="btn btn-primary">Card link</a>
+        <a href="#" class="card-link">Card link</a>
+    </article>
+    <footer class="card-footer">
+
+    </footer>
+</div>
+
+@code {
+    public WorkShop? workShop { get; set; } = new();
+
+}

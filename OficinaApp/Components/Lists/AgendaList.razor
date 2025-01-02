@@ -1,0 +1,44 @@
+﻿@using OficinaApp.Data.Models
+
+@using OficinaApp.Components.Cards
+
+
+@if (Agendamentos!.Count > 0)
+{
+    @foreach (var item in Agendamentos!)
+    {
+        <article class="col-xs-12 col-md-4">
+            <AgendaCard agenda="@item" />
+        </article>
+    }
+}
+else
+{
+    <article class="col-12">
+        <h5>Nenhuma agenda cadastrada!</h5>
+        <p>Crie uma agendamento primeiro.</p>
+    </article>
+}
+
+
+@code {
+    // Filtros da busca de agendas
+    public Customer? customer { get; set; }
+    public Vehicle? vehicle { get; set; }
+    public DateTime startDate { get; set; }
+    public DateTime endDate { get; set; }
+    // Lista de agendamentos obtidas do banco de dados ou do servidor remoto
+    public List<WorkOrder>? Agendamentos { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        // TODO: buscar todas as agendas no banco de dados de acordo com os critérios definidos nos filtros de busca
+        // ordenados pela data de início do agendamento (startDate)
+        // var agendaService = new AgendaService();
+        // agendaService.atualizarAgenda();
+        // var agendaRepository = new AgendaRepository();
+        // agendas = agendaRepository.agendasListAll();
+    }
+
+}

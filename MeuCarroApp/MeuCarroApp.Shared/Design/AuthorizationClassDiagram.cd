@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MeuCarroApp.Shared.Data.Entities.User">
+    <Position X="0.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAAAAAAAQAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Data\Models\Authorization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MeuCarroApp.Shared.Data.Entities.Role" Collapsed="true">
+    <Position X="8.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAEAAQAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Data\Models\Authorization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MeuCarroApp.Shared.Data.Entities.RoleChild" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Data\Models\Authorization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MeuCarroApp.Shared.Data.Entities.Permission" Collapsed="true">
+    <Position X="8.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\Models\Authorization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

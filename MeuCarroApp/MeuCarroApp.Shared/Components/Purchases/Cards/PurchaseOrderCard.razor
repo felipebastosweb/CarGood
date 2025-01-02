@@ -1,0 +1,17 @@
+﻿@using MeuCarroApp.Shared.Components.Core.Entities
+@using MeuCarroApp.Shared.Components.Purchases.Models
+
+<div class="card">
+    <article class="card-body">
+        <h5 class="card-title">@purchase!.Supplier!.Name</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary"></h6>
+        <p class="card-text">Content</p>
+        <a href="#" class="btn btn-primary">Card link</a>
+        <a href="#" class="card-link">Card link</a>
+    </article>
+</div>
+
+@code {
+    public PurchaseOrder? purchase { get; set; }
+
+}

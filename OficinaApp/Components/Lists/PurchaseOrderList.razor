@@ -1,0 +1,37 @@
+﻿
+
+@using OficinaApp.Data.Models
+
+@using OficinaApp.Components.Cards
+
+
+@foreach(var item in purchases!)
+{
+    <PurchaseOrderCard purchase="@item" />
+}
+
+@code
+{
+    public List<PurchaseOrder>? purchases { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        purchases!.Add(
+            new PurchaseOrder()
+            {
+                Supplier = new Supplier()
+                {   
+                    Name = "",
+                    FantasyName = "",
+                    FederalRegistrationNumber = "",
+                    Address = new Address()
+                    {
+                        Address1 = "",
+                        Address2 = "",
+                    }
+                }
+            }
+        );
+    }
+}

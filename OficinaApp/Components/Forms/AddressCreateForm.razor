@@ -1,0 +1,56 @@
+﻿@using OficinaApp.Data.Models
+
+@inject NavigationManager NavigationManager
+
+<section class="row">
+    <article class="col-12">
+        @if (NewAddress != null)
+        {
+            <EditForm Model="NewAddress" OnSubmit="OnAddressCreateSubmit">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <article class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label class="form-label">Endereço</label>
+                            <InputText @bind-Value="NewAddress!.Address1" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label class="form-label">Número</label>
+                            <InputText @bind-Value="NewAddress!.Number" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label class="form-label">Complemento</label>
+                            <InputText @bind-Value="NewAddress!.Address2" class="form-control" />
+                        </div>
+                    </div>
+                </article>
+                <nav class="row">
+                    <button type="submit" class="btn btn-primary"></button>
+                </nav>
+            </EditForm>
+        }
+
+    </article>
+</section>
+
+
+
+@code {
+    public Address? NewAddress { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        NewAddress = new();
+    }
+
+    protected void OnAddressCreateSubmit()
+    {
+        
+    }
+}

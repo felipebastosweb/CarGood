@@ -1,0 +1,88 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Components\Customers\**" />
+    <Compile Remove="Components\Core\Interfaces\Authentication\**" />
+    <Compile Remove="Components\Core\Interfaces\WorkShop\**" />
+    <Content Remove="Components\Customers\**" />
+    <Content Remove="Components\Core\Interfaces\Authentication\**" />
+    <Content Remove="Components\Core\Interfaces\WorkShop\**" />
+    <EmbeddedResource Remove="Components\Customers\**" />
+    <EmbeddedResource Remove="Components\Core\Interfaces\Authentication\**" />
+    <EmbeddedResource Remove="Components\Core\Interfaces\WorkShop\**" />
+    <MauiCss Remove="Components\Customers\**" />
+    <MauiCss Remove="Components\Core\Interfaces\Authentication\**" />
+    <MauiCss Remove="Components\Core\Interfaces\WorkShop\**" />
+    <MauiXaml Remove="Components\Customers\**" />
+    <MauiXaml Remove="Components\Core\Interfaces\Authentication\**" />
+    <MauiXaml Remove="Components\Core\Interfaces\WorkShop\**" />
+    <None Remove="Components\Customers\**" />
+    <None Remove="Components\Core\Interfaces\Authentication\**" />
+    <None Remove="Components\Core\Interfaces\WorkShop\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.12" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\Accounts\Cards\" />
+    <Folder Include="Components\Accounts\Lists\" />
+    <Folder Include="Components\Accounts\Models\" />
+    <Folder Include="Components\Accounts\Services\" />
+    <Folder Include="Components\Core\Interfaces\" />
+    <Folder Include="Components\Crm\Lists\" />
+    <Folder Include="Components\Crm\Records\" />
+    <Folder Include="Components\Crm\Services\" />
+    <Folder Include="Components\Hrm\Cards\" />
+    <Folder Include="Components\Hrm\Events\" />
+    <Folder Include="Components\Hrm\Forms\" />
+    <Folder Include="Components\Hrm\Interfaces\" />
+    <Folder Include="Components\Hrm\Lists\" />
+    <Folder Include="Components\Hrm\Records\" />
+    <Folder Include="Components\Hrm\Services\" />
+    <Folder Include="Components\Orders\Cards\" />
+    <Folder Include="Components\Orders\Events\" />
+    <Folder Include="Components\Orders\Forms\" />
+    <Folder Include="Components\Orders\Interfaces\" />
+    <Folder Include="Components\Orders\Lists\" />
+    <Folder Include="Components\Orders\Models\" />
+    <Folder Include="Components\Orders\Records\" />
+    <Folder Include="Components\Orders\Services\" />
+    <Folder Include="Components\Purchases\Lists\" />
+    <Folder Include="Components\Purchases\Records\" />
+    <Folder Include="Components\Purchases\Services\" />
+    <Folder Include="Components\Suppliers\Events\" />
+    <Folder Include="Components\Suppliers\Forms\" />
+    <Folder Include="Components\Suppliers\Lists\" />
+    <Folder Include="Components\Suppliers\Records\" />
+    <Folder Include="Components\Suppliers\Services\" />
+    <Folder Include="Components\Vehicles\Events\" />
+    <Folder Include="Components\Vehicles\Forms\" />
+    <Folder Include="Components\Vehicles\Records\" />
+    <Folder Include="Components\Vehicles\Services\" />
+    <Folder Include="Components\WorkOrders\Cards\" />
+    <Folder Include="Components\WorkOrders\Forms\" />
+    <Folder Include="Components\WorkOrders\Events\" />
+    <Folder Include="Components\WorkOrders\Lists\" />
+    <Folder Include="Components\WorkOrders\Records\" />
+    <Folder Include="Components\WorkOrders\Services\" />
+    <Folder Include="Components\WorkShops\Forms\" />
+    <Folder Include="Components\WorkShops\Lists\" />
+    <Folder Include="Components\WorkShops\Records\" />
+    <Folder Include="Components\WorkShops\Services\" />
+  </ItemGroup>
+
+</Project>

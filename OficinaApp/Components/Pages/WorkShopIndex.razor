@@ -1,0 +1,43 @@
+﻿@page "/workshops"
+
+@using OficinaApp.Data.Models
+@using OficinaApp.Components.Cards
+
+<h3>Minhas Oficinas</h3>
+
+<section class="row">
+    @foreach(var item in workShops!)
+    {
+        <div class="col-4">
+            <WorkShopCard workShop="@item" />
+        </div>
+    }
+</section>
+
+@code {
+    protected List<WorkShop>? workShops { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        // Oficina modelo para listar na lista
+        workShops!.Add(new WorkShop() {
+            LegalPerson = new LegalPerson() {
+                TradeName = "Oficina Um LTDA ME",
+                StartDate = DateTime.Now
+            },
+            Owner = new PhysicalPerson() {
+                SocialName = "Felipe Augusto Bastos Moraes",
+                Birthday = DateTime.Now,
+                Gender = Gender.Male
+            },
+            Name = "Oficina 1",
+            FantasyName = "Oficina 1",
+            FederalRegistrationNumber = "111.111.111/1111-1",
+            Address = new Address() {
+                Address1 = "Rua Vista do Mar, 64, Pirajá",
+                Address2 = "",
+            }
+        });
+    }
+}

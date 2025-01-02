@@ -1,0 +1,24 @@
+﻿
+@using MeuCarroApp.Shared.Components.Vehicles.Cards
+
+
+@using MeuCarroApp.Shared.Components.Vehicles.Models
+
+<section class="row">
+    @foreach(var item in Vehicles!)
+    {
+        <article class="col-4">
+            <VehicleCard Title="@item" />
+        </article>
+    }
+</section>
+
+@code {
+    private List<Vehicle>? Vehicles { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+    }
+}

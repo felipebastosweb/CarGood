@@ -1,0 +1,146 @@
+﻿@page "/"
+
+@using MeuCarroApp.Shared.Components.Core.Contexts
+@using MeuCarroApp.Shared.Components.Accounts.Forms
+@using MeuCarroApp.Shared.Components.Accounts.Records
+@using MeuCarroApp.Shared.Components.Accounts.Interfaces
+@using MeuCarroApp.Shared.Components.Accounts.Repositories
+@using MeuCarroApp.Shared.Services
+
+
+@inject IFormFactor FormFactor
+
+<PageTitle>Home</PageTitle>
+
+<section class="row">
+    <article class="col-xs-12 col-md-6">
+        <setion class="row">
+            <header class="col-12">
+                <h5 class="display-5">Transforme Sua Oficina</h5>
+                <p class="lead">Eficiência e organização ao alcance de suas mãos</p>
+            </header>
+        </setion>
+        <section class="row">
+            <article class="col-xs-12 col-md-6" style="padding: 5px">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Fluxo de Veículos</h5>
+                        <h6 class="card-subtitle"></h6>
+                        <p class="card-text"></p>
+                    </div>
+                    <footer class="card-footer"></footer>
+                </div>
+            </article>
+            <article class="col-xs-12 col-md-6" style="padding: 5px">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Agendamentos</h5>
+                        <h6 class="card-subtitle"></h6>
+                        <p class="card-text"></p>
+                    </div>
+                    <footer class="card-footer"></footer>
+                </div>
+            </article>
+            <article class="col-xs-12 col-md-6" style="padding: 5px">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Acompanhamento em Tempo Real</h5>
+                        <h6 class="card-subtitle"></h6>
+                        <p class="card-text"></p>
+                    </div>
+                    <footer class="card-footer"></footer>
+                </div>
+            </article>
+            <article class="col-xs-12 col-md-6" style="padding: 5px">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">E muito mais</h5>
+                        <h6 class="card-subtitle"></h6>
+                        <p class="card-text"></p>
+                    </div>
+                    <footer class="card-footer"></footer>
+                </div>
+            </article>
+        </section>
+    </article>
+    <article class="col-xs-12 col-md-6">
+
+        @if (TotalUsers < 1)
+        {
+            <h3>Primeira vez aqui?</h3>
+            <p>Preencha o formulário abaixo para começar a administrar sua oficina.</p>
+            <!-- Verificar se tem usuários no banco de dados e mostrar o componente ou o link -->
+            <div style="padding: 20px">
+                <SignUpForm />
+            </div>
+
+            <p>Já tem cadastro?</p>
+            <a href="login" class="btn btn-warning">Login</a>
+            <a href="dash" class="btn btn-warning">Dash</a>
+        }
+        else
+        {
+            <h3>Já tem cadastro?</h3>
+            <p>Informe seus dados para entrar.</p>
+            <div class="border rounded-3 shadow" style="padding: 20px">
+                <LoginForm />
+            </div>
+            <p>Criar nova conta?</p>
+            <a href="signup" class="btn btn-success">Cadastrar</a>
+        }
+    </article>
+</section>
+
+
+
+@code
+{
+    /***
+        User Story - Como Visitante desejo ver o formulário de Cadastro de usuários para poder acessar o Aplicativo
+        Scenario: Primeiro Acesso ao Aplicativo
+        When - Nao existem usuários cadastrados nesse dispositivo
+        And - É a primeira vez que acesso o Aplicativo
+        Than - Eu desejo ver o Formulário de Cadastro de Usuários
+        Scenario: Login rápido nesse dispositivo
+        When - Existe um usuário no banco de dados
+        And - Ele está configurado como acesso rápido
+        Than - O sistema lista esses usuários com link de acesso rápido
+        Scenario: Demais usuários cadastrados nesse dispositivo
+        When: Eu abro o Aplicativo
+        And: Não é a primeira vez que acesso o Aplicativo
+        Than: Eu desejo ver o link de acesso a página de Cadastro de Usuários
+     ***/
+
+    //private string factor => FormFactor.GetFormFactor();
+    //private string platform => FormFactor.GetPlatform();
+
+    //#if ANDROID || IOS || WINDOWS
+    public IUserRepository repository { get; set; } = null!;
+    //#else
+    //#endif
+
+    public List<UserQuickAccess> UsersQuickAccess { get; set; } = null!;
+
+    public int TotalUsers { get; set; }
+
+    /***
+    Encontrados identificadores de tempo de execução específicos da versão ou da distribuição: alpine-arm, alpine-arm64, alpine-x64. Bibliotecas afetadas: SQLitePCLRaw.lib.e_sqlite3. No .NET 8.0 e superior, ativos para identificadores de tempo de execução específicos da versão e da distribuição não serão encontrados por padrão. Veja https://aka.ms/dotnet/rid-usage para obter detalhes.
+    XA0141: O pacote NuGet "<unknown>" versão "<unknown>" contém uma biblioteca compartilhada "libe_sqlite3.so" que não está corretamente alinhada. Consulte https://developer.android.com/guide/practices/page-sizes para obter mais detalhes
+    ***/
+
+    protected override async Task OnInitializedAsync()
+    {
+        repository = new UserSQLiteRepository(new SQLiteContexts());
+        TotalUsers = 0;
+        UsersQuickAccess = await repository.UserQuickAccess();
+        await base.OnInitializedAsync();
+    }
+
+    /*
+    protected override void OnAfterRender(bool firstRender)
+        {
+        base.OnAfterRender(firstRender);
+    }
+    */
+
+}

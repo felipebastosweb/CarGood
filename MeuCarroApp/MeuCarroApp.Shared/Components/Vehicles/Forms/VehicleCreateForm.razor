@@ -1,0 +1,77 @@
+﻿@using MeuCarroApp.Shared.Components.Vehicles.Models
+
+@using MeuCarroApp.Shared.Components.Vehicles.Records
+
+<h3>Add Vehicle</h3>
+
+<EditForm Model="TheVehicle" OnSubmit="OnSubmitButtonClick">
+    <section class="row">
+        <article class="col">
+            <div class="mb-3">
+                <label class="form-label">Fabricante</label>
+                <InputSelect @bind-Value="TheVehicle!.Manufacturer" class="form-control" OnChange="">
+                @foreach(var manufacturer in Manufacturers!)
+                {
+                    <option value="@manufacturer!.Id">@manufacturer!.Title</option>
+                }
+                </InputSelect>
+            </div>
+        </article>
+        <article class="col">
+            <div class="mb-3">
+                <label class="form-label">Marca</label>
+                <InputSelect @bind-Value="TheVehicle!.Brand" class="form-control">
+                @foreach(var brand in Brands!)
+                {
+                    <option value="@brand!.Id">@brand!.Title</option>
+                }
+                </InputSelect>
+            </div>
+        </article>
+        <article class="col">
+            <div class="mb-3">
+                <label class="form-label">Modelo</label>
+                <InputSelect @bind-Value="TheVehicle.Model" class="form-control">
+                @foreach(var model in Models!)
+                {
+                    <option value="@model!.Id">@model!.Title</option>
+                }
+                </InputSelect>
+            </div>
+        </article>
+        <article class="col">
+            <div class="mb-3">
+                <label class="form-label">Nome</label>
+                <InputText @bind-Value="TheVehicle!.Name" class="form-control" />
+            </div>
+        </article>
+        <article class="col">
+            <div class="mb-3">
+                <label class="form-label">Placa</label>
+                <InputText @bind-Value="TheVehicle!.PlateNumber" class="form-control" />
+            </div>
+        </article>
+        <article class="col">
+            <div class="mb-3">
+                <button class="btn btn-success">Confirm</button>
+            </div>
+        </article>
+    </section>
+</EditForm>
+
+@code {
+    private List<Manufacturer>? Manufacturers { get; set; } = new();
+    private List<Brand>? Brands { get; set; } = new();
+    private List<VehicleModel> Models { get; set; } = new();
+    private VehicleInput? TheVehicle { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    private void OnSubmitButtonClick()
+    {
+
+    }
+}

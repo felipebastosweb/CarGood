@@ -1,0 +1,100 @@
+﻿@page "/agendas"
+
+@using Microsoft.AspNetCore.Components.Forms
+@using System.ComponentModel.DataAnnotations
+
+@using OficinaApp.Components.Pages
+
+@using OficinaApp.Data.Models
+
+
+<article class="container-fluid">
+    <header class="row">
+        <section class="row">
+            <h3>Agendas</h3>
+        </section>
+    </header>
+    <section class="row">
+        <article class="col-12">
+            <!--
+            <EditForm Model="agendaFilterInput">
+                
+                <section class="row">
+                    <section class="col-4">
+                        <InputText @bind-Value="@agendaFilterInput!.customerSelected!.Person!.Name" class="form-control" />
+                        <InputSelect @bind-Value="@agendaFilterInput!.customerSelected" class="form-control">
+                            <otion value="0">Select a Customer</otion>
+                            @if (customers!.Count > 0)
+                            {
+                                @foreach (var item in customers!)
+                                {
+                                    <option value="@item.Id">@item!.Person!.Name</option>
+                                }
+                
+                            }
+                        </InputSelect>
+                    </section>
+                    <section class="col-4">
+                        <InputText @bind-Value="@agendaFilterInput!.vehicleSelected!.Name" class="form-control" />
+                        <InputSelect @bind-Value="@agendaFilterInput!.vehicleSelected" class="form-control">
+                            <option value="0">Select a Vehicle</option>
+                            @if (vehicles!.Count > 0)
+                            {
+                                @foreach (var item in vehicles!)
+                                {
+                                    <option value="@item.Id">@item!.Name</option>
+                                }
+                
+                            }
+                        </InputSelect>
+                    </section>
+                    <section class="col-2"></section>
+                    <section class="col-2"></section>
+                </section>
+            </EditForm>
+            -->
+        </article>
+    </section>
+    <section class="row">
+        <!--AgendaList customer="customerSelected" vehicle="vehicleSelected" startDate="startDate" endDate="endDate"/-->
+    </section>
+</article>
+
+
+
+@code {
+
+     /***
+    * Como Dono da Oficina desejo visualizar todos os Serviços Agendados pelos meus Clientes
+    *  - a fim de Planejar as demandas dos Funcionários mecânicos de acordo com os Serviços Previstos
+    *  - e Reservar Itens no Estoque para a Inicialização da Ordem de Serviço (fazer o Orçamento)
+    * Cenário 1:
+    *  Quando eu seleciono o Cliente eu vejo uma lista com todos os serviços agendados por ele (para todos os veículos que ele tiver)
+    * Cenário 2:
+    *  Quando eu seleciono o Veículo eu vejo uma lista com todos os serviços agendados para o veículo
+    * Cenário 3:
+    *  Quando eu defino uma data de início eu vejo uma lista com todos os serviços agendados após essa data
+    * Cenário 4:
+    *  Quando eu defino uma data de conclusão eu vejo uma lista com todos os serviços concluídos até essa data
+    ***/
+
+    public List<Customer>? customers { get; set; } = new();
+    public List<Vehicle>? vehicles { get; set; } = new();
+
+    public record AgendaFilterInput
+    {
+        public Customer? customerSelected { get; set; } = new();
+        public Vehicle? vehicleSelected { get; set; } = new();
+        public DateTime startDate { get; set; } = DateTime.Now;
+        public DateTime endDate { get; set; } = DateTime.Now;
+    }
+
+    public AgendaFilterInput? agendaFilterInput { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+}

@@ -1,0 +1,26 @@
+﻿@using OficinaApp.Data.Models
+
+<div class="card">
+    <header class="card-header">
+        @WorkOrder!.Vehicle!.Model!.Brand!.Manufacturer!.Title @WorkOrder!.Vehicle!.Model!.Brand!.Title
+    </header>
+    <article class="card-body">
+        <h5 class="card-title">@WorkOrder.StartDate.ToString() @WorkOrder!.EndDate.ToString() </h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">@WorkOrder!.Vehicle!.Owner!.Person!.Name</h6>
+        <p class="card-text">Content</p>
+        <a href="#" class="btn btn-primary">Card link</a>
+        <a href="#" class="card-link">Card link</a>
+    </article>
+    <footer class="card-footer">
+    </footer>
+</div>
+
+@code {
+    public WorkOrder? WorkOrder { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+}
