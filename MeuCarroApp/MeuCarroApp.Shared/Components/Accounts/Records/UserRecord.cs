@@ -10,6 +10,7 @@ namespace MeuCarroApp.Shared.Components.Accounts.Records
     {
         public required string Username { get; set; } = string.Empty;
         public required string Password { get; set; } = string.Empty;
+        public required string RepeatPassword { get; set; } = string.Empty;
         public required string Email { get; set; } = string.Empty;
         public required string Telephone { get; set; } = string.Empty;
         public bool AcceptTerms { get; set; } = false;
