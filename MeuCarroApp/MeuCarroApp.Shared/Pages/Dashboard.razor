@@ -1,6 +1,21 @@
 ﻿@page "/dash"
 
-<h3>Dashboard</h3>
+@using MeuCarroApp.Shared.Components.Accounts.Services
+@using MeuCarroApp.Shared.Components.Accounts.Records
+
+@inject AuthenticationService AuthService
+@inject NavigationManager Navigate
+
+<header class="row">
+    <article class="col-4">
+        <h3>Dashboard</h3>
+    </article>
+    <nav class="col-6"></nav>
+    <aside class="col-2">
+        <button type="button" class="btn btn-secondary">@UserLogged.Username</button>
+        <button type="button" @onclick="OnLogoutClick" class="btn btn-danger">Logout</button>
+    </aside>
+</header> 
 
 <section class="row">
     <div class="col-4" style="margin-bottom: 10px;">
@@ -109,5 +124,22 @@
 </section>
 
 @code {
+    [Parameter]
+    public LoginOutput UserLogged { get; set; } = null!;
 
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        if (!AuthService.IsAuthenticated())
+        {
+            Navigate.NavigateTo("");
+        }
+        UserLogged = AuthService.currentUser!;
+    }
+
+    public void OnLogoutClick()
+    {
+        AuthService.Logout();
+        Navigate.NavigateTo("");
+    }
 }

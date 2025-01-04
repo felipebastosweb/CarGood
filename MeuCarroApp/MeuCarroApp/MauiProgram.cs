@@ -1,4 +1,5 @@
 ﻿using MeuCarroApp.Services;
+using MeuCarroApp.Shared.Components.Accounts.Services;
 using MeuCarroApp.Shared.Services;
 using Microsoft.Extensions.Logging;
 
@@ -18,6 +19,7 @@ namespace MeuCarroApp
 
             // Add device-specific services used by the MeuCarroApp.Shared project
             builder.Services.AddSingleton<IFormFactor, FormFactor>();
+            builder.Services.AddSingleton<AuthenticationService>();
 
             builder.Services.AddMauiBlazorWebView();
 

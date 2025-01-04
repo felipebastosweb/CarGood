@@ -2,7 +2,8 @@
 using MeuCarroApp.Shared.Components.Core.Entities;
 using MeuCarroApp.Shared.Components.Accounts.Interfaces;
 using MeuCarroApp.Shared.Components.Accounts.Records;
-using Microsoft.Maui.ApplicationModel.Communication;
+using MeuCarroApp.Shared.Components.Accounts.Services;
+
 
 
 namespace MeuCarroApp.Shared.Components.Accounts.Repositories
@@ -108,9 +109,12 @@ namespace MeuCarroApp.Shared.Components.Accounts.Repositories
                 .FirstAsync();
             if (user.PasswordHash != input.Password)
             {
-                throw new Exception("Tentativa de login falha");
+                return null;
+                //throw new Exception("Tentativa de login falha");
             }
 
+            // https://copilot.microsoft.com/chats/S1qwKk4GqZW4vNGyXAXDb
+            // continuar
             return new LoginOutput()
             {
                 Username = user!.Username!,

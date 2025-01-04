@@ -41,7 +41,6 @@
     <Folder Include="Components\Accounts\Cards\" />
     <Folder Include="Components\Accounts\Lists\" />
     <Folder Include="Components\Accounts\Models\" />
-    <Folder Include="Components\Accounts\Services\" />
     <Folder Include="Components\Core\Interfaces\" />
     <Folder Include="Components\Crm\Lists\" />
     <Folder Include="Components\Crm\Records\" />

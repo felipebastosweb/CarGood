@@ -2,6 +2,9 @@
 @using MeuCarroApp.Shared.Components.Accounts.Interfaces
 @using MeuCarroApp.Shared.Components.Accounts.Records
 @using MeuCarroApp.Shared.Components.Accounts.Repositories
+@using MeuCarroApp.Shared.Components.Accounts.Services
+
+@inject AuthenticationService AuthService
 
 @inject NavigationManager Navigation
 
@@ -58,6 +61,7 @@
     private async Task OnLoginSubmit()
     {
         output = await repository.Login(input!);
+        AuthService.Login(output!);
         await Task.Delay(1000);
         Navigation.NavigateTo("dash");
     }
